@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/index/service/Wechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+            <state relative-caret-position="205">
+              <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -143,7 +143,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552754061073</updated>
-      <workItem from="1552754062543" duration="3460000" />
+      <workItem from="1552754062543" duration="3547000" />
     </task>
     <task id="LOCAL-00001" summary="登录">
       <created>1552754541101</created>
@@ -156,7 +156,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3460000" />
+    <option name="totallyTimeSpent" value="3547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -241,10 +241,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/thinkphp/helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="564" column="26" selection-start-line="564" selection-start-column="21" selection-end-line="564" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/index/service/Wechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        <state relative-caret-position="205">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
         </state>
       </provider>
     </entry>
