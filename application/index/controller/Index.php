@@ -38,6 +38,8 @@ class Index
 	   if (trim($code)) {
 	       $wc = new Wechat();
 	       $session = $wc->getWCCode2Session($code);
+
+	       file_put_contents('test_data.txt', json_encode($session));
 	   
 	       return json(['return_code'=>0, 'msg'=>'wc_session', 'data'=>$session]);
 	   }
