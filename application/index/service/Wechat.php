@@ -21,7 +21,7 @@ class Wechat extends Base
 		if ($result) {
 			$tmpRes = json_decode($result, true);
 			session('openid', $tmpRes['openid']);
-			session('unionid', $tmpRes['unionid']);
+			session('unionid', isset($tmpRes['unionid']) ? $tmpRes['unionid'] : '');
 
 			return json(['return_code'=>0, 'msg'=>'session', 'data'=>['session'=>$tmpRes]]);
 		}
