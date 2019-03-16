@@ -48,7 +48,7 @@ class Wechat extends Base
                 $userData['create_at'] = $curtime;
                 $userData['uuid'] = $uuid;
                 
-                return Db::table('lkl_wechat_user')->insert($addData);
+                return Db::table('lkl_wechat_user')->insert($userData);
             } else {
                 Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->save($userData);
                 
