@@ -20,18 +20,21 @@ class Wechat extends Base
 		
 		if ($result) {
 			$tmpRes = json_decode($result, true);
-			$this->saveWCOpenId($tmpRes['openid'], isset($tmpRes['unionid'])?$tmpRes['unionid']:'');
+			session('openid', $tmpRes['openid']);
+			session('unionid', $tmpRes['unionid']);
+
+			return json(['return_code'=>0, 'msg'=>'session', 'data'=>['session'=>$tmpRes]]);
 		}
 		
-		return $result;
+		return json(['return_code'=>-600, 'msg'=>'异常']);
 	}
 
-        /* 新增用户 */
-        public function addUser($uuid, $openid, $unionid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting)
-        {
+    /* 新增用户 */
+    public function addUser($openid, $unionid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting)
+    {
+        if (!trim($openid)) {
             $curtime = time();
             $userData = [
-                'openid' => $openid,
                 'unionid' => $unionid,
                 'nickname' => $nickname,
                 'avatar_url' => $avatarUrl,
@@ -44,26 +47,28 @@ class Wechat extends Base
             ];
 
             if ($uuid <= 0) {
-                $uuid = $this->uuid();
+                $userData['openid'] = $openid;
                 $userData['create_at'] = $curtime;
-                $userData['uuid'] = $uuid;
-                
+
                 return Db::table('lkl_wechat_user')->insert($userData);
             } else {
-                Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->save($userData);
-                
-                return $uuid;   
-            }
-        }
+                Db::table('lkl_wechat_user')->where(['openid'=>$openid])->save($userData);
 
-        protected function uuid()
-        {
-            do {
-                $uuid = intval(strval(microtime(true) * 10000) . mt_rand(10, 99));
-            } while (Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->find());
- 
-            return $uuid;
+                return $uuid;
+            }
+        } else {
+            return 0;
         }
+    }
+
+    protected function uuid()
+    {
+        do {
+            $uuid = intval(strval(microtime(true) * 10000) . mt_rand(10, 99));
+        } while (Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->find());
+
+        return $uuid;
+    }
 
 
 }

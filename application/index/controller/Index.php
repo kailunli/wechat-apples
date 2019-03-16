@@ -60,7 +60,6 @@ class Index
     /*新增用户*/
     public function adduser(Request $req)
     {
-        $uuid = $req->param('uuid', 0, 'int');
         $openid = $req->param('openid', '', 'string');
         $unionid = $req->param('unionid', '', 'string');
         $nickname = $req->param('nickname', '', 'string');
