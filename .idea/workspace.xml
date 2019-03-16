@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1ddeeb4-183e-48a3-a481-869b046edb54" name="Default Changelist" comment="登录">
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/index/service/Wechat.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/service/Wechat.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/index/service/Wechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+            <state relative-caret-position="190">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -144,7 +143,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552754061073</updated>
-      <workItem from="1552754062543" duration="3297000" />
+      <workItem from="1552754062543" duration="3460000" />
     </task>
     <task id="LOCAL-00001" summary="登录">
       <created>1552754541101</created>
@@ -157,7 +156,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3297000" />
+    <option name="totallyTimeSpent" value="3460000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -244,8 +243,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/index/service/Wechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+        <state relative-caret-position="190">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>
