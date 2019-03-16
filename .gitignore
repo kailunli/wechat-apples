@@ -1,3 +1,4 @@
 # ignore file
 config.php
 database.php
+.idea/*
