@@ -17,16 +17,16 @@ class Wechat extends Base
 		$secret = $this->wechatAppSecret;
 		$url = "https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$secret}&js_code={$code}&grant_type=authorization_code";
 		$result = curl_request($url);
+
+        file_put_contents('test_data.txt', json_encode($result));
 		
 		if ($result) {
 			$tmpRes = json_decode($result, true);
 			session('openid', $tmpRes['openid']);
 			session('unionid', isset($tmpRes['unionid']) ? $tmpRes['unionid'] : '');
-
-			return json(['return_code'=>0, 'msg'=>'session', 'data'=>['session'=>$tmpRes]]);
 		}
 		
-		return json(['return_code'=>-600, 'msg'=>'异常']);
+		return (array)$result;
 	}
 
     /* 新增用户 */
