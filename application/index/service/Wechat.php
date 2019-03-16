@@ -19,7 +19,7 @@ class Wechat extends Base
 		$result = curl_request($url);
 
         file_put_contents('test_data.txt', $result . "\r\n");
-        file_put_contents('test_data.txt', json_encode(session('uuid')) . "\r\n");
+        file_put_contents('test_data.txt', json_encode(session('openid')) . "\r\n", FILE_APPEND);
 		
 		if ($result) {
 			$tmpRes = json_decode($result, true);
