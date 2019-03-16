@@ -18,7 +18,8 @@ class Wechat extends Base
 		$url = "https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$secret}&js_code={$code}&grant_type=authorization_code";
 		$result = curl_request($url);
 
-        file_put_contents('test_data.txt', json_encode($result));
+        file_put_contents('test_data.txt', $result . "\r\n");
+        file_put_contents('test_data.txt', json_encode($_SESSION) . "\r\n");
 		
 		if ($result) {
 			$tmpRes = json_decode($result, true);

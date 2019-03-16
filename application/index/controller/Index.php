@@ -39,7 +39,7 @@ class Index
 	       $wc = new Wechat();
 	       $session = $wc->getWCCode2Session($code);
 	   
-	       return json(['return_code'=>0, 'msg'=>'wc_session', 'data'=>$session]);
+	       return json(['return_code'=>0, 'msg'=>'wc_session', 'data'=>['session'=>$session]]);
 	   }
 	   return json(['return_code'=>-1, 'msg'=>'无效code']);
     }
