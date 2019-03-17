@@ -48,6 +48,7 @@ class Wechat extends Base
             ]);
             return $uuid;
         }
+        return 0;
     }
 
     /* 新增用户 */

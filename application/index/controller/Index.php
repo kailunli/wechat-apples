@@ -61,10 +61,12 @@ class Index extends Base
 
         if (isset($result['openid'])) {
             $wcServ = new Wechat();
-            $wcServ->saveSession($result['openid'], $result['unionid']?$result['unionid']:'', $result['session_key']);
+            $uuid = $wcServ->saveSession($result['openid'], $result['unionid']?$result['unionid']:'', $result['session_key']);
+
+            return json(['return_code'=>0, 'msg'=>'session', 'data'=>['uuid'=>$uuid]]);
         }
 
-        return json($result);        
+        return json(['return_code'=>-601, 'msg'=>'异常']);
     }
     
     /*新增用户*/
