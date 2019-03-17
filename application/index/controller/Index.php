@@ -35,38 +35,18 @@ class Index extends Base
        $code = $req->param('code', '', 'string');
 	   
 	   if (trim($code)) {
-	       $wc = new Wechat();
-	       $session = $wc->getWCCode2Session($code);
+           $wcServ = new Wechat();
+	       $session = $wcServ->getWCCode2Session($code);
 	       if ($session) {
-               session('wcuser.openid', $session['openid']);
-               session('wcuser.unionid', isset($session['unionid']) ? $session['unionid'] : '');
+               if (isset($session['openid'])) {
+                   $uuid = $wcServ->saveSession($session['openid'], $session['unionid']?$session['unionid']:'', $session['session_key']);
+                   session('user.uuid', $uuid);
+
+                   return json(['return_code'=>0, 'msg'=>'session', 'data'=>['uuid'=>$uuid]]);
+               }
            }
-	   
-	       return json(['return_code'=>0, 'msg'=>'wc_session', 'data'=>['session'=>$session]]);
 	   }
 	   return json(['return_code'=>-1, 'msg'=>'无效code']);
-    }
-    
-    public function getWechatSessionKey(Request $req)
-    {
-        $code = $req->param('code');
-        $appid = $this->wechatAppId;
-        $secret = $this->wechatAppSecret;
-
-        $url = "https://api.weixin.qq.com/sns/jscode2session?appid={$appid}&secret={$secret}&js_code={$code}&grant_type=authorization_code";
-        $result = curl_request($url);
-        if ($result) {
-            $result = json_decode($result, true);
-        }
-
-        if (isset($result['openid'])) {
-            $wcServ = new Wechat();
-            $uuid = $wcServ->saveSession($result['openid'], $result['unionid']?$result['unionid']:'', $result['session_key']);
-
-            return json(['return_code'=>0, 'msg'=>'session', 'data'=>['uuid'=>$uuid]]);
-        }
-
-        return json(['return_code'=>-601, 'msg'=>'异常']);
     }
     
     /*新增用户*/
