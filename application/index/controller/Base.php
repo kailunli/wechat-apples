@@ -27,6 +27,8 @@ class Base extends Controller
         if (!(array_key_exists($controller, $noLoginActions) && in_array($action, $noLoginActions[$controller]))) {
             $this->access();
         }
+
+        dump(session('user'));
     }
 
     protected function access()
