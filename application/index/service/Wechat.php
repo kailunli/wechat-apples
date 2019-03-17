@@ -55,31 +55,29 @@ class Wechat extends Base
     /* 新增用户 */
     public function addUser($uuid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting)
     {
-        if (!trim($openid)) {
-            $curtime = time();
-            $userData = [
-                'nickname' => $nickname,
-                'avatar_url' => $avatarUrl,
-                'country' => $country,
-                'province' => $province,
-                'city' => $city,
-                'gender' => $gender,
-                'auth_setting' => $authSetting,
-                'update_at' => $curtime
-            ];
+        $curtime = time();
+        $userData = [
+            'nickname' => $nickname,
+            'avatar_url' => $avatarUrl,
+            'country' => $country,
+            'province' => $province,
+            'city' => $city,
+            'gender' => $gender,
+            'auth_setting' => $authSetting,
+            'update_at' => $curtime
+        ];
 
-            if ($uuid <= 0) {
-                $uuid = $this->uuid();
-                $userData['uuid'] = $uuid;
-                $userData['create_at'] = $curtime;
+        if ($uuid <= 0) {
+            $uuid = $this->uuid();
+            $userData['uuid'] = $uuid;
+            $userData['create_at'] = $curtime;
 
-                if (Db::table('lkl_wechat_user')->insert($userData)) {
-                    return $uuid;
-                }
-            } else {
-                if (Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->save($userData)) {
-                    return $uuid;
-                }
+            if (Db::table('lkl_wechat_user')->insert($userData)) {
+                return $uuid;
+            }
+        } else {
+            if (Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->save($userData)) {
+                return $uuid;
             }
         }
         return 0;
