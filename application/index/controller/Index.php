@@ -51,13 +51,13 @@ class Index extends Base
     public function adduser(Request $req)
     {
         $uuid = $this->uuid;
-        $nickname = $req->param('nickname', '', 'string');
-        $avatarUrl = $req->param('avatar_url', '', 'string');
+        $nickname = $req->param('nickName', '', 'string');
+        $avatarUrl = $req->param('avatarUrl', '', 'string');
         $country = $req->param('country', '', 'string');
         $province = $req->param('province', '', 'string');
         $city = $req->param('city', '', 'string');
         $gender = $req->param('gender', 0, 'int');
-        $authSetting = $req->param('auth_setting', '', 'string');
+        $authSetting = $req->param('authSetting', '', 'string');
 
         $wxServ = new Wechat();
         $uuid = $wxServ->addUser($uuid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting);
