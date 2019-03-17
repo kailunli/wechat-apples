@@ -7,7 +7,7 @@ class Base extends Controller
 {
     protected $wechatAppId = 'wx9446d2169abf4697';
     protected $wechatAppSecret = '201dd04116c4297eb62de88868f82ab8';
-    protected $uuid;
+    protected $uuid = 0;
 
     public function initialize()
     {
@@ -17,6 +17,13 @@ class Base extends Controller
         if ($wcuser = session('wcuser')) {
             $uuid = strval($wcuser['uuid']);
             $this->uuid = $uuid;
+            if ($uuid <= 0) {
+                echo json_encode(['return_code' => -900, 'msg' => '请登录！']);
+                exit();
+            }
+        } else {
+            echo json_encode(['return_code'=>-900, 'msg'=>'请登录！']);
+            exit();
         }
 
         file_put_contents('test_data.txt', '$this->uuid = ' . $this->uuid);
