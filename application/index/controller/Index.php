@@ -40,8 +40,6 @@ class Index extends Base
 	       if ($session) {
                if (isset($session['openid'])) {
                    $uuid = $wcServ->saveSession($session['openid'], isset($session['unionid'])?$session['unionid']:'', $session['session_key']);
-                   session('user.uuid', $uuid);
-
                    return json(['return_code'=>0, 'msg'=>'session', 'data'=>['uuid'=>$uuid]]);
                }
            }
