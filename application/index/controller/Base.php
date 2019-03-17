@@ -31,6 +31,7 @@ class Base extends Controller
 
     protected function access()
     {
+        dump(session('user'));
         if ($user = session('user')) {
             $uuid = strval($user['uuid']);
             $this->uuid = $uuid;
@@ -39,7 +40,7 @@ class Base extends Controller
                 exit();
             }
         } else {
-            echo json_encode(['return_code'=>-900, 'msg'=>'请登录！']);
+            echo json_encode(['return_code'=>-901, 'msg'=>'请登录！']);
             exit();
         }
     }
