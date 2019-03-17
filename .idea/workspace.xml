@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1ddeeb4-183e-48a3-a481-869b046edb54" name="Default Changelist" comment="登录">
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/index/service/Wechat.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/service/Wechat.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="565">
+              <caret line="76" column="33" selection-start-line="76" selection-start-column="33" selection-end-line="76" selection-end-column="33" />
               <folding>
                 <element signature="e#39#52#0#PHP" expanded="true" />
               </folding>
@@ -36,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/index/service/Wechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="78" column="76" selection-start-line="78" selection-start-column="76" selection-end-line="78" selection-end-column="76" />
+            <state relative-caret-position="190">
+              <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -59,18 +60,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
         <option value="$PROJECT_DIR$/application/index/controller/Base.php" />
         <option value="$PROJECT_DIR$/application/index/service/Wechat.php" />
+        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
       </list>
     </option>
   </component>
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="827" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -143,7 +145,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552754061073</updated>
-      <workItem from="1552754062543" duration="10830000" />
+      <workItem from="1552754062543" duration="12265000" />
     </task>
     <task id="LOCAL-00001" summary="登录">
       <created>1552754541101</created>
@@ -156,7 +158,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10830000" />
+    <option name="totallyTimeSpent" value="12265000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -168,7 +170,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="827" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="827" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
@@ -231,16 +233,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="e#39#52#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/index/controller/Base.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -250,8 +242,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/index/service/Wechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="78" column="76" selection-start-line="78" selection-start-column="76" selection-end-line="78" selection-end-column="76" />
+        <state relative-caret-position="190">
+          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="76" column="33" selection-start-line="76" selection-start-column="33" selection-end-line="76" selection-end-column="33" />
+          <folding>
+            <element signature="e#39#52#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

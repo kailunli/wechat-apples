@@ -67,4 +67,19 @@ class Index extends Base
         return json(['return_code'=>-600, 'msg'=>'网络异常']);
     }
 
+    public function setAuth(Request $req)
+    {
+        $uuid = $req->param('uuid', 0, 'int');
+        $auth = $req->param('auth', '', 'string');
+
+        if ($uuid > 0 && trim($auth)) {
+            $wcServ = new Wechat();
+            $upres = $wcServ->setAuth($uuid, $auth);
+            if ($upres) {
+                return json(['return_code'=>0, 'msg'=>'设置成功']);
+            }
+        }
+        return json(['return_code'=>0, 'msg'=>'设置失败']);
+    }
+
 }

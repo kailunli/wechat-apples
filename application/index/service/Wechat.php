@@ -52,6 +52,12 @@ class Wechat extends Base
         return 0;
     }
 
+    /* 权限设置 */
+    public function setAuth($uuid, $authSetting)
+    {
+        return Db::talbe('lkl_wechat_user')->where(['uuid'=>$uuid, 'auth_setting'=>$authSetting]);
+    }
+
     /* 新增用户 */
     public function addUser($uuid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting)
     {
