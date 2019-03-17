@@ -31,7 +31,8 @@ class Base extends Controller
 
     protected function access()
     {
-        if ($user = session('user')) {
+        $this->uuid = request()->param('uuid');
+        /*if ($user = session('user')) {
             $uuid = strval($user['uuid']);
             $this->uuid = $uuid;
             if ($uuid <= 0) {
@@ -41,7 +42,7 @@ class Base extends Controller
         } else {
             echo json_encode(['return_code'=>-901, 'msg'=>'请登录！']);
             exit();
-        }
+        }*/
     }
 
 
