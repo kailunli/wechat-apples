@@ -24,10 +24,7 @@ class Base extends Controller
         $controller = request()->controller();
         $action = request()->action();
 
-        dump($controller);
-        dump($action);
-
-        if (!(isset($noLoginActions[$controller]) && isset($noLoginActions[$controller][$action]))) {
+        if (!(array_key_exists($controller, $noLoginActios) && isset($noLoginActions[$controller][$action]))) {
             $this->access();
         }
     }
