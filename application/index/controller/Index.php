@@ -41,7 +41,7 @@ class Index extends Base
                if (isset($session['openid'])) {
                    $uuid = $wcServ->saveSession($session['openid'], isset($session['unionid'])?$session['unionid']:'', $session['session_key']);
                    session('user.uuid', $uuid);
-                   dump(session('user.uuid'));
+                   dump(session('user'));
 
                    return json(['return_code'=>0, 'msg'=>'session', 'data'=>['uuid'=>$uuid]]);
                }
