@@ -6,6 +6,7 @@ use think\Request;
 use app\index\service\Wechat;
 
 class Index extends Base
+{
 
     public function index(Request $req)
     {
