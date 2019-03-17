@@ -76,7 +76,7 @@ class Wechat extends Base
                 return $uuid;
             }
         } else {
-            if (Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->save($userData)) {
+            if (Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->update($userData)) {
                 return $uuid;
             }
         }
