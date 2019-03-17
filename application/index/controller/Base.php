@@ -10,7 +10,7 @@ class Base extends Controller
     protected $uuid = 0;
     protected $noLoginController = [];
     protected $noLoginActions = [
-        'index' => [
+        'Index' => [
             'index',
             'login'
         ]
@@ -24,6 +24,9 @@ class Base extends Controller
         $controller = request()->controller();
         $action = request()->action();
 
+        dump($controller);
+        dump($action);
+
         if (!(isset($noLoginActions[$controller]) && isset($noLoginActions[$controller][$action]))) {
             $this->access();
         }
@@ -31,8 +34,8 @@ class Base extends Controller
 
     protected function access()
     {
-        if ($wcuser = session('wcuser')) {
-            $uuid = strval($wcuser['uuid']);
+        if ($user = session('user')) {
+            $uuid = strval($user['uuid']);
             $this->uuid = $uuid;
             if ($uuid <= 0) {
                 echo json_encode(['return_code' => -900, 'msg' => '请登录！']);
