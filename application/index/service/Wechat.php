@@ -40,6 +40,7 @@ class Wechat extends Base
         } else {
             $uuid = $this->uuid();
             Db::table('lkl_wechat_user')->insert([
+                'uuid' => $uuid,
                 'openid' => $openid,
                 'unionid' => $unionid,
                 'session_key' => $sessionKey,
