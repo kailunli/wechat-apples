@@ -17,26 +17,45 @@ class Wechat extends Base
 		$secret = $this->wechatAppSecret;
 		$url = "https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$secret}&js_code={$code}&grant_type=authorization_code";
 		$result = curl_request($url);
-		
+
+        $tmpRes = [];
 		if ($result) {
 			$tmpRes = json_decode($result, true);
-			session('openid', $tmpRes['openid']);
-			session('unionid', isset($tmpRes['unionid']) ? $tmpRes['unionid'] : '');
 		}
 
-        file_put_contents('test_data.txt', $result . "\r\n");
-        file_put_contents('test_data.txt', session('openid') . "\r\n", FILE_APPEND);
-		
-		return (array)$result;
+		return (array)$tmpRes;
 	}
 
+	/* 保存会话秘钥 */
+	public function saveSession($openid, $unionid, $sessionKey)
+    {
+        $curtime = time();
+        if ($user = Db::table('lkl_wechat_user')->where(['openid'=>$openid])->find()) { // 更新
+            if (Db::table('lkl_wechat_user')->where(['uuid'=>$user['uuid']])->update([
+                'session_key' => $sessionKey,
+                'update_at' => $curtime
+            ]);) {
+               return $user['uuid'];
+            }
+        } else {
+            $uuid = $this->uuid();
+            Db::table('lkl_wechat_user')->insert([
+                'openid' => $openid,
+                'unionid' => $unionid,
+                'session_key' => $sessionKey,
+                'create_at' => $curtime,
+                'update_at' => $curtime
+            ]);
+            return $uuid;
+        }
+    }
+
     /* 新增用户 */
-    public function addUser($openid, $unionid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting)
+    public function addUser($uuid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting)
     {
         if (!trim($openid)) {
             $curtime = time();
             $userData = [
-                'unionid' => $unionid,
                 'nickname' => $nickname,
                 'avatar_url' => $avatarUrl,
                 'country' => $country,
@@ -48,18 +67,20 @@ class Wechat extends Base
             ];
 
             if ($uuid <= 0) {
-                $userData['openid'] = $openid;
+                $uuid = $this->uuid();
+                $userData['uuid'] = $uuid;
                 $userData['create_at'] = $curtime;
 
-                return Db::table('lkl_wechat_user')->insert($userData);
+                if (Db::table('lkl_wechat_user')->insert($userData);) {
+                    return $uuid;
+                }
             } else {
-                Db::table('lkl_wechat_user')->where(['openid'=>$openid])->save($userData);
-
-                return $uuid;
+                if (Db::table('lkl_wechat_user')->where(['uuid'=>$uuid])->save($userData);) {
+                    return $uuid;
+                }
             }
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     protected function uuid()

@@ -5,10 +5,8 @@ use think\Db;
 use think\Request;
 use app\index\service\Wechat;
 
-class Index
-{
-    protected $wechatAppId = 'wx9446d2169abf4697';
-    protected $wechatAppSecret = '201dd04116c4297eb62de88868f82ab8';
+class Index extends Base
+
     public function index(Request $req)
     {
         $page = $req->param('page', 1);
@@ -38,6 +36,10 @@ class Index
 	   if (trim($code)) {
 	       $wc = new Wechat();
 	       $session = $wc->getWCCode2Session($code);
+	       if ($session) {
+               session('wcuser.openid', $session['openid']);
+               session('wcuser.unionid', isset($session['unionid']) ? $session['unionid'] : '');
+           }
 	   
 	       return json(['return_code'=>0, 'msg'=>'wc_session', 'data'=>['session'=>$session]]);
 	   }
@@ -52,14 +54,23 @@ class Index
 
         $url = "https://api.weixin.qq.com/sns/jscode2session?appid={$appid}&secret={$secret}&js_code={$code}&grant_type=authorization_code";
         $result = curl_request($url);
+        if ($result) {
+            $result = json_decode($result, true);
+        }
+
+        if (isset($result['openid'])) {
+            $wcServ = new Wechat();
+            $wcServ->saveSession($result['openid'], $result['unionid']?$result['unionid']:'', $result['session_key']);
+        }
+
         return json($result);        
     }
     
     /*新增用户*/
     public function adduser(Request $req)
     {
-        $openid = $req->param('openid', '', 'string');
-        $unionid = $req->param('unionid', '', 'string');
+        $openid = $this->openid;
+        $unionid = $this->unionid;
         $nickname = $req->param('nickname', '', 'string');
         $avatarUrl = $req->param('avatar_url', '', 'string');
         $country = $req->param('country', '', 'string');
@@ -69,7 +80,7 @@ class Index
         $authSetting = $req->param('auth_setting', '', 'string');
 
         $wxServ = new Wechat();
-        $uuid = $wxServ->addUser($uuid, $openid, $unionid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting);
+        $uuid = $wxServ->addUser($uuid, $nickname, $avatarUrl, $country, $province, $city, $gender, $authSetting);
         if ($uuid) {
 	    return json(['return_code'=>0, 'msg'=>'授权成功', 'data'=>['uuid'=>$uuid]]);
 	}
