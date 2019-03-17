@@ -52,8 +52,7 @@ class Index extends Base
     /*新增用户*/
     public function adduser(Request $req)
     {
-        $openid = $this->openid;
-        $unionid = $this->unionid;
+        $uuid = $this->uuid;
         $nickname = $req->param('nickname', '', 'string');
         $avatarUrl = $req->param('avatar_url', '', 'string');
         $country = $req->param('country', '', 'string');
