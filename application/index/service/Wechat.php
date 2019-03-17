@@ -34,7 +34,7 @@ class Wechat extends Base
             if (Db::table('lkl_wechat_user')->where(['uuid'=>$user['uuid']])->update([
                 'session_key' => $sessionKey,
                 'update_at' => $curtime
-            ]);) {
+            ])) {
                return $user['uuid'];
             }
         } else {
