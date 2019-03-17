@@ -8,12 +8,29 @@ class Base extends Controller
     protected $wechatAppId = 'wx9446d2169abf4697';
     protected $wechatAppSecret = '201dd04116c4297eb62de88868f82ab8';
     protected $uuid = 0;
+    protected $noLoginController = [];
+    protected $noLoginActions = [
+        'index' => [
+            'index',
+            'login'
+        ]
+    ];
 
     public function initialize()
     {
         parent::initialize();
 
+        $noLoginActions = $this->noLoginActions;
+        $controller = request()->controller();
+        $action = request()->action();
 
+        if (!(isset($noLoginActions[$controller]) && isset($noLoginActions[$controller][$action]))) {
+            $this->access();
+        }
+    }
+
+    protected function access()
+    {
         if ($wcuser = session('wcuser')) {
             $uuid = strval($wcuser['uuid']);
             $this->uuid = $uuid;
@@ -25,8 +42,6 @@ class Base extends Controller
             echo json_encode(['return_code'=>-900, 'msg'=>'请登录！']);
             exit();
         }
-
-        file_put_contents('test_data.txt', '$this->uuid = ' . $this->uuid);
     }
 
 
